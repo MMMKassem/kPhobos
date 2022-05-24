@@ -48,6 +48,12 @@ backhaul.link_multiplexing = True
 backhaul.vlan_tagging = True
 backhaul.best_effort = True
 
+# Midhaul network
+midhaul = rspec.Link("Midhaul")
+midhaul.link_multiplexing = True
+midhaul.vlan_tagging = True
+midhaul.best_effort = True
+
 # Fronthaul network
 fronthaul = rspec.Link("Fronthaul")
 fronthaul.link_multiplexing = True
@@ -80,7 +86,7 @@ iface1.addAddress(PG.IPv4Address("192.168.1.2", netmask))
 backhaul.addInterface(iface1)
 iface2 = enb.addInterface()
 iface2.addAddress(PG.IPv4Address("192.168.2.1", netmask))
-fronthaul.addInterface(iface2)
+midhaul.addInterface(iface2)
 
 
 # Proxy
@@ -91,7 +97,10 @@ proxy.hardware_type = params.Hardware
 proxy.Site('RAN')
 iface = proxy.addInterface()
 iface.addAddress(PG.IPv4Address("192.168.2.2", netmask))
-fronthaul.addInterface(iface)
+midhaul.addInterface(iface)
+iface2 = proxy.addInterface()
+iface2.addAddress(PG.IPv4Address("192.168.3.1", netmask))
+fronthaul.addInterface(iface2)
 
 
 # K8s Master
@@ -101,7 +110,7 @@ kube_m.routable_control_ip = True
 kube_m.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
 kube_m.Site('Kubernetes')
 iface = kube_m.addInterface()
-iface.addAddress(PG.IPv4Address("192.168.2.3", netmask))
+iface.addAddress(PG.IPv4Address("192.168.3.2", netmask))
 fronthaul.addInterface(iface)
 kube_m.addService(PG.Execute(shell="bash", command="/local/repository/scripts/master.sh"))
 
@@ -113,7 +122,7 @@ for i in range(0,params.computeNodeCount):
     kube_s.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
     kube_s.Site('Kubernetes')
     iface = kube_s.addInterface()
-    iface.addAddress(PG.IPv4Address("192.168.2." + str(i+4), netmask))
+    iface.addAddress(PG.IPv4Address("192.168.3." + str(i+3), netmask))
     fronthaul.addInterface(iface)
     kube_s.addService(PG.Execute(shell="bash", command="/local/repository/scripts/slave.sh"))
 

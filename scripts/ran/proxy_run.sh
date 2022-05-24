@@ -12,4 +12,4 @@ fi
 
 cd /local/repository/proxy/
 
-sudo -E ./proxy $1 192.168.2.1 192.168.2.2
+sudo -E ./proxy $1 192.168.2.1 192.168.3.1 192.168.2.2
