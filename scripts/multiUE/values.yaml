@@ -1,0 +1,6 @@
+# Docker image of the UEs
+UEImage: j0lama/oaiue:latest
+# Number of UEs to be created
+num_ues: 1
+# Traffic generator command to be executed inside each Pod
+ue_command: 'sleep 99999999'

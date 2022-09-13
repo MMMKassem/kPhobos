@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: multi-ue
+spec:
+  replicas: {{ .Values.num_ues }}
+  template:
+    metadata:
+      labels:
+        app: oaiue
+    spec:
+      containers:
+      - name: oaiue
+        image: {{ .Values.UEImage }}
+        imagePullPolicy: Always
+        command: ["/bin/sh"]
+        args: ["-c", "{{ .Values.ue_command }}"]
