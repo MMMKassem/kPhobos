@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ue
+spec:
+  serviceName: "ue"
+  replicas: {{ .Values.num_ues }}
+  selector:
+    matchLabels:
+      app: ue
+  template:
+    metadata:
+      labels:
+        app: ue
+    spec:
+      containers:
+        - name: ue
+          image: {{ .Values.UEImage }}
+          imagePullPolicy: Always
+          command: ["/bin/bash"]
+          args: ["-c", "./execute_ue.sh '{{ .Values.ue_command }}'"]
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name

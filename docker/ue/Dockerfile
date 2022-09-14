@@ -22,4 +22,5 @@ RUN ./build_oai --UE
 WORKDIR ran_build/build/
 COPY ue.conf .
 COPY sim.conf .
-COPY run_ue.sh .
+COPY oai_ue.sh .
+COPY execute_ue.sh .

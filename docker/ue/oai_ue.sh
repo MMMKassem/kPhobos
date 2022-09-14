@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 1 ]; then
-    echo "USE: sudo ./ue_run.sh <UE ID>"
+    echo "USE: ./oai_ue.sh <UE ID>"
     exit 1
 fi
 
