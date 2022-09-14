@@ -15,11 +15,13 @@ export UE_ID=$((${HOSTNAME##*-} + 1))
 while true; do
     ip route | grep "oaitun_ue1"
     if [ $? -eq 0 ]; then
+        echo "Waiting for oaitun_ue1..."
         sleep 1  # network not yet up
     else
         break   # network up
     fi
 done
+echo "oaitun_ue1 interface ready!"
 sleep 1
 
 # Execute the traffic command

@@ -10,4 +10,4 @@ fi
 helm install \
     --set-string num_ues=$1 \
     --set-string ue_command="$2" \
-    multi-ue .
+    ues .

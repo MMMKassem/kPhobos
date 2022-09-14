@@ -19,8 +19,5 @@ spec:
           imagePullPolicy: Always
           command: ["/bin/bash"]
           args: ["-c", "./execute_ue.sh '{{ .Values.ue_command }}'"]
-          env:
-            - name: MY_POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
+          securityContext:
+            privileged: true
