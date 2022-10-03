@@ -48,7 +48,8 @@ sudo apt-get -y install \
     ca-certificates \
     curl \
     gnupg-agent \
-    software-properties-common
+    software-properties-common \
+    byobu
 
 # docker
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io
