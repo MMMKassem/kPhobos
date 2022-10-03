@@ -24,4 +24,7 @@ cd proxy/
 # Compile proxy
 make
 
+# Install byobu
+sudo apt install byobu
+
 touch /local/repository/proxy-setup-complete
