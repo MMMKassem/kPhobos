@@ -17,5 +17,8 @@ sudo apt-get install srsran -y
 # Configure the network
 sudo srsepc_if_masq.sh eno1
 
+# Install byobu
+sudo apt install byobu
+
 touch /local/repository/core-ready
 touch /local/repository/srsepc-setup-complete
