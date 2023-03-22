@@ -3,12 +3,14 @@ FROM ubuntu:bionic
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get -y update
-RUN apt-get -y install net-tools iputils-ping git xxd nano
+RUN apt-get -y install net-tools iputils-ping git xxd nano iproute2
 
-ARG token
-RUN git clone https://j0lama:$token@github.com/j0lama/openairinterface5g.git
+ARG gh_url
+RUN git clone $gh_url openairinterface5g
 
 WORKDIR openairinterface5g/
+ARG gh_branch
+RUN git checkout $gh_branch
 RUN source oaienv
 WORKDIR cmake_targets/
 

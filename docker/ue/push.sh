@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker image push j0lama/oaiue:latest
+docker push andrewferguson/phobos-ue:latest

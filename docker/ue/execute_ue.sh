@@ -1,15 +1,19 @@
 #!/bin/bash
 
-if [ "$#" -ne 1 ]; then
-    echo "USE: ./execute_ue.sh <Data Plane command (quoted)>"
+if [ "$#" -ne 3 ]; then
+    echo "USE: ./execute_ue.sh <Data Plane command (quoted)> <Proxy IP> <Handover CSV File>"
     exit 1
 fi
+
+DATA_PLANE_COMMAND=$1
+PROXY_IP=$2
+HANDOVER_CSV_FILE=$3
 
 # Export UE ID based on Hostname
 export UE_ID=$((${HOSTNAME##*-} + 1))
 
 # Run OAI UE
-./oai_ue.sh $UE_ID &
+./oai_ue.sh $UE_ID $PROXY_IP $HANDOVER_CSV_FILE &
 
 # Loop until the oaitun_ue1 iface is created
 while true; do
@@ -25,4 +29,4 @@ echo "oaitun_ue1 interface ready!"
 sleep 1
 
 # Execute the traffic command
-$1
+$DATA_PLANE_COMMAND

@@ -1,8 +1,11 @@
 #!/bin/bash
 
 if [ "$#" -ne 1 ]; then
-    echo "USE: sudo ./build.sh <GitHub Token>"
+    echo "USE: sudo ./build.sh <GitHub URL> <GitHub Branch>"
     exit 1
 fi
 
-docker build --build-arg token=$1 -t j0lama/oaiue:latest .
+docker build \
+    --build-arg gh_url=$1 \
+    --build-arg gh_branch=$2 \
+    -t andrewferguson/phobos-ue:latest .
