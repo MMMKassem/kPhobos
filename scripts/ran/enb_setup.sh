@@ -13,7 +13,7 @@ git clone https://gitlab.eurecom.fr/oai/openairinterface5g.git
 
 cd openairinterface5g/
 # Change branch
-git checkout develop
+git checkout 2022.w26
 source oaienv
 cd cmake_targets/
 
