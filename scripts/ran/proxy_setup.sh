@@ -18,7 +18,7 @@ sudo apt -y install libsctp-dev
 cd /local/repository
 
 # Clone proxy
-git clone https://j0lama:$1@github.com/j0lama/proxy.git
+git clone https://ujjwalpawar:$1@github.com/ujjwalpawar/proxy.git
 cd proxy/
 
 # Compile proxy
