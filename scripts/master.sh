@@ -16,7 +16,7 @@ echo "Starting Kubernetes Master installation..."
 # Set env variables & install K8s, containerd and dependencies
 source /local/repository/scripts/common.sh
 
-sudo kubeadm init --config=config/kubeadm-config.yaml
+sudo kubeadm init --config=config/kubeadm-config.yaml "192.168.1.4:6443"
 
 # allow sN to log in with shared key
 # see http://docs.powderwireless.net/advanced-topics.html

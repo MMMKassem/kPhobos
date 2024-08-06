@@ -7,7 +7,12 @@ if [ -f /local/.slave-ready ]; then
     exit 0
 fi
 
+
 echo "Starting Kubernetes Slave installation..."
+
+# Redirect output to log file
+exec >> /local/slave.log
+exec 2>&1
 
 # Set env variables & install K8s, containerd and dependencies
 source /local/repository/scripts/common.sh
