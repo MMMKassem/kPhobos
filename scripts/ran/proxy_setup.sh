@@ -27,4 +27,11 @@ make
 # Install byobu
 sudo apt install byobu
 
+# 
+filename=/local/repository/config/ran/enb_ips.conf
+> $filename
+for ((i=1;i<=$1;i++)); do
+    printf "192.168.1.%d\n" $(($i+1)) >> $filename
+done
+
 touch /local/repository/proxy-setup-complete

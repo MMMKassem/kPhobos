@@ -75,7 +75,7 @@ backhaul.addInterface(iface)
 for i in range(params.gNBCount):
     enb = rspec.RawPC("enb" + str(i))
     enb.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
-    enb.addService(PG.Execute(shell="sh", command="/usr/bin/sudo /local/repository/scripts/ran/enb_setup.sh"))
+    enb.addService(PG.Execute(shell="sh", command="/usr/bin/sudo /local/repository/scripts/ran/enb_setup.sh " + str(i) + " " + str(params.token)))
     enb.hardware_type = params.Hardware
     enb.Site('RAN')
 
@@ -92,7 +92,7 @@ for i in range(params.gNBCount):
 # Proxy
 proxy = rspec.RawPC("proxy")
 proxy.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
-proxy.addService(PG.Execute(shell="sh", command="/usr/bin/sudo /local/repository/scripts/ran/proxy_setup.sh " + params.token))
+proxy.addService(PG.Execute(shell="sh", command="/usr/bin/sudo /local/repository/scripts/ran/proxy_setup.sh " + str(params.gNBCount) + " " + str(params.token)))
 proxy.hardware_type = params.Hardware
 proxy.Site('RAN')
 iface = proxy.addInterface()
