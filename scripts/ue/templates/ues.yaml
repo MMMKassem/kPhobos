@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ue
+spec:
+  serviceName: "ue"
+  replicas: {{ .Values.num_ues }}
+  selector:
+    matchLabels:
+      app: ue
+  template:
+    metadata:
+      labels:
+        app: ue
+    spec:
+      containers:
+        - name: ue
+          image: iouliosp/oaiue:latest
+          imagePullPolicy: Always
+          command: ["/bin/sh", "-c"]
+          # args: ["ping 8.8.8.8"]
+          args: ["python3 start_ue.py $((${HOSTNAME##*-} + 1))"]
+          securityContext:
+            privileged: true
