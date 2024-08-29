@@ -19,6 +19,7 @@ spec:
           imagePullPolicy: Always
           command: ["/bin/sh", "-c"]
           # args: ["ping 8.8.8.8"]
-          args: ["python3 start_ue.py $((${HOSTNAME##*-} + 1))"]
+          # args: ["python3 start_ue.py $((${HOSTNAME##*-} + 1))"]
+          args: ["python3 start_ues.py $((${HOSTNAME##*-} + 1)) &> start_ues.log"]
           securityContext:
             privileged: true
