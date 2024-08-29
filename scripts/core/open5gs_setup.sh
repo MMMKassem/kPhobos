@@ -45,6 +45,8 @@ do
 	/local/repository/open5gs/misc/db/open5gs-dbctl add 20893$i 00001111222233334444555566667777 88889999AAAABBBBCCCCDDDDEEEEFFFF
 done
 
+mkdir /local/repository/scripts/core/logs
+
 # Install byobu
 sudo apt install byobu 
 touch /local/repository/core-ready
